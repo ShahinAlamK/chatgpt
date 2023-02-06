@@ -14,6 +14,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
   TextEditingController _typeMessage = TextEditingController();
   GlobalKey<FormState> key = GlobalKey<FormState>();
 
@@ -22,9 +23,13 @@ class _ChatScreenState extends State<ChatScreen> {
   bool isActive = false;
 
   ScrollController scrollController = ScrollController();
+  
   scrollMethod() {
-    scrollController.animateTo(scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeOut
+      );
   }
 
   @override
@@ -54,19 +59,30 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
 
           Flexible(
-              child: ListView.builder(
-                  controller: scrollController,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: messageList.length,
-                  itemBuilder: (_, index) {
-                    if (messageList.isEmpty) {
-                      return Center(child: Text("Welcome To Chat-Gpt"));
-                    }
-                    return ChatMessage(
-                      massage: messageList[index].message.toString(),
-                      chatType: messageList[index].chatType!,
-                    );
-                  })),
+            fit: FlexFit.tight,
+            child:messageList.length==0?
+            Center(child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset("assets/image/chatgpt.png",width: SizeConfig.width!*.3),
+                SizedBox(height: 10,),
+                Text("Welcome To Chat-GPT",
+                style:TextStyle(
+                  fontSize:SizeConfig.blockHorizontal!*4
+                ),),
+              ],
+            )):
+            ListView.builder(
+                controller: scrollController,
+                physics: BouncingScrollPhysics(),
+                itemCount: messageList.length,
+                itemBuilder: (_, index) {
+                  return ChatMessage(
+                    massage: messageList[index].message.toString(),
+                    chatType: messageList[index].chatType!,
+                  );
+                }),
+          ),
 
           if (isLoading) TypingLoading(),
 

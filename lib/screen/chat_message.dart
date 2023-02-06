@@ -18,6 +18,7 @@ class ChatMessage extends StatelessWidget {
         right: 20,
         left: 10
       ),
+
       child: Row(
         crossAxisAlignment:CrossAxisAlignment.start,
         children: [
@@ -44,13 +45,13 @@ class ChatMessage extends StatelessWidget {
                 topRight: Radius.circular(10)
               )
              ),
+
              child:Text(massage,
              style: TextStyle(
                color: chatType==ChatType.user? Colors.black:kSecondary,
               fontWeight:FontWeight.w400,
               fontSize: SizeConfig.blockHorizontal!*4.5),),
             ),
-            
           ),
         ],
       ),

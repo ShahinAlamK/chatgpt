@@ -4,9 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 const BaseUrl="https://api.openai.com/v1/completions";
-//const ApiKey="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";
-//const ApiKey="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";
-const ApiKey="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";
+const ApiKey="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";
 
 class ChatGptService{
 
@@ -23,11 +21,11 @@ class ChatGptService{
       "model": "text-davinci-003",
       "prompt": "$msg",
       "max_tokens": 2000 ,
-      "temperature":1,
+      "temperature":0,
       "top_p": 1,
       "frequency_penalty":0.0,
       "presence_penalty":0.0,
-      
+
     })
     );
     if(response.statusCode==200){
