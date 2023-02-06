@@ -1,6 +1,7 @@
 import 'package:chatgpt/style/colors.dart';
 import 'package:chatgpt/style/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 enum ChatType{user,gpt}
@@ -34,23 +35,28 @@ class ChatMessage extends StatelessWidget {
           SizedBox(width: 10,),
           
           Flexible(
-            child: Container(
-              margin:EdgeInsets.only(bottom: 10),
-              padding:EdgeInsets.all(12),
-              decoration:BoxDecoration(
-              color:chatType==ChatType.user? kSecondary:kPrimary.withOpacity(.9),
-              borderRadius:BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-                topRight: Radius.circular(10)
-              )
-             ),
-
-             child:Text(massage,
-             style: TextStyle(
-               color: chatType==ChatType.user? Colors.black:kSecondary,
-              fontWeight:FontWeight.w400,
-              fontSize: SizeConfig.blockHorizontal!*4.5),),
+            child: GestureDetector(
+              onTap: (){
+                Clipboard.setData(ClipboardData(text:massage));
+              },
+              child: Container(
+                margin:EdgeInsets.only(bottom: 10),
+                padding:EdgeInsets.all(12),
+                decoration:BoxDecoration(
+                color:chatType==ChatType.user? kSecondary:kPrimary.withOpacity(.9),
+                borderRadius:BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                  topRight: Radius.circular(10)
+                )
+               ),
+            
+               child:Text(massage,
+               style: TextStyle(
+                 color: chatType==ChatType.user? Colors.black:kSecondary,
+                fontWeight:FontWeight.w400,
+                fontSize: SizeConfig.blockHorizontal!*4.5),),
+              ),
             ),
           ),
         ],

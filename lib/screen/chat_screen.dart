@@ -64,12 +64,16 @@ class _ChatScreenState extends State<ChatScreen> {
             Center(child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/image/chatgpt.png",width: SizeConfig.width!*.3),
+                Image.asset("assets/image/chatgpt.png",
+                width: SizeConfig.width!*.3),
+
                 SizedBox(height: 10,),
+                
                 Text("Welcome To Chat-GPT",
                 style:TextStyle(
                   fontSize:SizeConfig.blockHorizontal!*4
                 ),),
+
               ],
             )):
             ListView.builder(
