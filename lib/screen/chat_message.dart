@@ -13,7 +13,11 @@ class ChatMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 2),
+      padding: EdgeInsets.only(
+        top: 10,
+        right: 20,
+        left: 10
+      ),
       child: Row(
         crossAxisAlignment:CrossAxisAlignment.start,
         children: [
@@ -46,6 +50,7 @@ class ChatMessage extends StatelessWidget {
               fontWeight:FontWeight.w400,
               fontSize: SizeConfig.blockHorizontal!*4.5),),
             ),
+            
           ),
         ],
       ),

@@ -30,16 +30,18 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     _typeMessage.addListener(() {
-      final isButton=_typeMessage.text.isEmpty;
+      final isButton = _typeMessage.text.isEmpty;
       setState(() {
-        isActive=isButton;
+        isActive = isButton;
       });
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -47,8 +49,10 @@ class _ChatScreenState extends State<ChatScreen> {
         elevation: 0,
         title: Text("Chat-Gpt".toUpperCase()),
       ),
+
       body: Column(
         children: [
+
           Flexible(
               child: ListView.builder(
                   controller: scrollController,
@@ -72,10 +76,11 @@ class _ChatScreenState extends State<ChatScreen> {
             decoration: BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(color: Colors.grey, blurRadius: 7, spreadRadius: -5),
             ]),
+
             child: Row(
               children: [
                 Expanded(
-                    child: Form(
+                  child: Form(
                   key: key,
                   child: TextFormField(
                     controller: _typeMessage,
@@ -88,7 +93,9 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 )),
                 IconButton(
-                    onPressed: isActive? null : () {
+                    onPressed: isActive
+                        ? null
+                        : () {
                             isLoading = true;
                             messageList.add(ChatModel(
                                 message: _typeMessage.text,

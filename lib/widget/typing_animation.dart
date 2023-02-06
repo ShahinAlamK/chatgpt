@@ -11,6 +11,7 @@ class _TypingLoadingState extends State<TypingLoading> with TickerProviderStateM
 
   AnimationController? animationController;
   int currentIndex=0;
+
   @override
   void initState() {
     animationController=AnimationController(vsync:this,duration:Duration(milliseconds:400));
@@ -28,11 +29,14 @@ class _TypingLoadingState extends State<TypingLoading> with TickerProviderStateM
     super.initState();
   }
 
+
   @override
   void dispose() {
     animationController!.dispose();
     super.dispose();
   }
+
+  
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
