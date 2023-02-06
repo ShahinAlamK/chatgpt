@@ -19,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   List<ChatModel> messageList = [];
   bool isLoading = false;
-  bool isActive=false;
+  bool isActive = false;
 
   ScrollController scrollController = ScrollController();
   scrollMethod() {
@@ -27,6 +27,16 @@ class _ChatScreenState extends State<ChatScreen> {
         duration: Duration(milliseconds: 300), curve: Curves.easeOut);
   }
 
+  @override
+  void initState() {
+    _typeMessage.addListener(() {
+      final isButton=_typeMessage.text.isEmpty;
+      setState(() {
+        isActive=isButton;
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -67,12 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 Expanded(
                     child: Form(
                   key: key,
-                  child: TextField(
-                    onChanged: (val){
-                      setState(() {
-                        isActive=false;
-                      });
-                    },
+                  child: TextFormField(
                     controller: _typeMessage,
                     decoration: InputDecoration(
                         hintText: "Typing message",
