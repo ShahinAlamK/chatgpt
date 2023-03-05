@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt/model/chat_model.dart';
 import 'package:chatgpt/screen/chat_message.dart';
 import 'package:chatgpt/service/chatgpt_service.dart';
@@ -64,16 +65,22 @@ class _ChatScreenState extends State<ChatScreen> {
             Center(child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset("assets/image/chatgpt.png",
-                width: SizeConfig.width!*.3),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: Image.asset("assets/image/chatgpt.png",
+                  width: SizeConfig.width!*.3),
+                ),
 
                 SizedBox(height: 10,),
-                
-                Text("Welcome To Chat-GPT",
-                style:TextStyle(
-                  fontSize:SizeConfig.blockHorizontal!*4
-                ),),
 
+                AnimatedTextKit(
+                    animatedTexts:[
+                  TyperAnimatedText("Welcome To Chat-GPT",
+                    speed: Duration(milliseconds: 100),
+                    textStyle:TextStyle(
+                      fontSize:SizeConfig.blockHorizontal!*5
+                  ),)
+                ]),
               ],
             )):
             ListView.builder(
@@ -99,6 +106,11 @@ class _ChatScreenState extends State<ChatScreen> {
 
             child: Row(
               children: [
+                SizedBox(width: 15),
+                CircleAvatar(
+                  radius: 15,
+                  backgroundImage: AssetImage("assets/image/placeholder.png"),
+                ),
                 Expanded(
                   child: Form(
                   key: key,

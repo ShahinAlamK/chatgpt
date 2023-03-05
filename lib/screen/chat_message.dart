@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt/style/colors.dart';
 import 'package:chatgpt/style/size_config.dart';
 import 'package:flutter/material.dart';
@@ -50,12 +51,22 @@ class ChatMessage extends StatelessWidget {
                   topRight: Radius.circular(10)
                 )
                ),
-            
-               child:Text(massage,
-               style: TextStyle(
-                 color: chatType==ChatType.user? Colors.black:kSecondary,
-                fontWeight:FontWeight.w400,
-                fontSize: SizeConfig.blockHorizontal!*4.5),),
+
+               child:chatType==ChatType.user?Text(massage,
+                 style: TextStyle(
+                     color: chatType==ChatType.user? Colors.black:kSecondary,
+                     fontWeight:FontWeight.w400,
+                     fontSize: SizeConfig.blockHorizontal!*4.5),)
+
+                   :AnimatedTextKit(
+                   isRepeatingAnimation: false,
+                   totalRepeatCount:1,
+                   animatedTexts:[
+                     TyperAnimatedText(massage.trim(),textStyle:TextStyle(
+                     color:kSecondary,
+                     fontWeight:FontWeight.w400,
+                     fontSize: SizeConfig.blockHorizontal!*4.5)),
+               ]),
               ),
             ),
           ),
