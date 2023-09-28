@@ -6,6 +6,7 @@ import 'package:chatgpt/style/colors.dart';
 import 'package:chatgpt/style/size_config.dart';
 import 'package:chatgpt/widget/typing_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -50,15 +51,18 @@ class _ChatScreenState extends State<ChatScreen> {
     
     return Scaffold(
       backgroundColor: Colors.white,
+      
       appBar: AppBar(
         backgroundColor: kPrimary,
         elevation: 0,
-        title: Text("Chat-Gpt".toUpperCase()),
+        title: Text("Chat-Gpt".toUpperCase(),style: GoogleFonts.poppins(
+          fontSize: getWidth(20),
+          fontWeight: FontWeight.w700
+        ),),
       ),
 
       body: Column(
         children: [
-
           Flexible(
             fit: FlexFit.tight,
             child:messageList.length==0?
@@ -68,7 +72,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.asset("assets/image/chatgpt.png",
-                  width: SizeConfig.width!*.3),
+                  width:getWidth(80)),
                 ),
 
                 SizedBox(height: 10,),
@@ -78,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   TyperAnimatedText("Welcome To Chat-GPT",
                     speed: Duration(milliseconds: 100),
                     textStyle:TextStyle(
-                      fontSize:SizeConfig.blockHorizontal!*5
+                      fontSize:getWidth(18)
                   ),)
                 ]),
               ],

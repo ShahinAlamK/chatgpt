@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 const BaseUrl="https://api.openai.com/v1/completions";
-const ApiKey="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";
+const ApiKey="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";
 
 class ChatGptService{
 
@@ -25,14 +25,13 @@ class ChatGptService{
       "top_p": 1,
       "frequency_penalty":0.0,
       "presence_penalty":0.0,
-
     })
     );
     if(response.statusCode==200){
       final decoded=jsonDecode(response.body.toString());
       return decoded['choices'][0]['text'];
     }else{
-      print("Fetching Failed");
+      print(response.body);
     }
   }catch(error){
     print(error.toString());
